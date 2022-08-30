@@ -2,5 +2,9 @@
   "cleanCode": {
     "src": "./src/1_2_CleanCode/before",
     "type": "code"
+  },
+  "bigO": {
+      "src": "./src/1_3_BigO/excercises",
+      "type": "test-global"
   }
 }

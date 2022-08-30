@@ -1,6 +1,6 @@
 
 function makeOrders(x) {
-  for(let i=0; i<x.length; i++) {
+    for(let i=0; i<x.length; i++) {
       const z = x[i]
     
       for(let j=i+1; j<x.length; j++){
