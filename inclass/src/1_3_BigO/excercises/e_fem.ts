@@ -13,5 +13,5 @@ export const whatIsThis = (arr: number[], x: number) => {
     return false
 }
 
-export const ANSWER_E='O(1)'
-export const EXTRA_POINT='what algorythm is this one'
+export const ANSWER_E='O(log(n))'
+export const EXTRA_POINT='binary search'

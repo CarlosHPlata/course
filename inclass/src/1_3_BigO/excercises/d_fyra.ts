@@ -6,4 +6,4 @@ export function factorial(n: number) {
     return n * factorial(n-1)
 }
 
-export const ANSWER_D = 'O(1)'
+export const ANSWER_D = 'O(n)'

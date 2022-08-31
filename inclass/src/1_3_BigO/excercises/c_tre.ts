@@ -14,4 +14,4 @@ const helper = (a: number, arrayB: number[]) => {
     }
 }
 
-export const ANSWER_C = 'O(1)'
+export const ANSWER_C = 'O(ab)'

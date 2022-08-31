@@ -13,4 +13,4 @@ export function foo(array: number[]) {
     return [sum, product]
 }
 
-export const ANSWER_B = 'O(1)'
+export const ANSWER_B = 'O(n)'
