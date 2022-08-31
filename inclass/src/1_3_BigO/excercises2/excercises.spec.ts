@@ -1,18 +1,18 @@
 import { Answers, fetchAnswer } from '../../helpers'
-import {ANSWER_A} from './a_ett'
-import {ANSWER_B} from './b_tva'
-import {ANSWER_C} from './c_tre'
-import {ANSWER_D} from './d_fyra'
-import {ANSWER_E, EXTRA_POINT} from './e_fem'
+import {ANSWER_F} from './f_sx';
+import {ANSWER_G} from './g_sju';
+import {ANSWER_H} from './h_otta';
+import {ANSWER_I} from './i_nio';
+import {ANSWER_J, EXTRA_POINT} from './j_tio';
 
 const answers = {
-    'a': ANSWER_A,
-    'b': ANSWER_B,
-    'c': ANSWER_C,
-    'd': ANSWER_D,
-    'e': ANSWER_E,
+    'f': ANSWER_F,
+    'g': ANSWER_G,
+    'h': ANSWER_H,
+    'i': ANSWER_I,
+    'j': ANSWER_J,
 }
-const excercises = ['a', 'b', 'c', 'd', 'e']
+const excercises = ['f', 'g', 'h', 'i', 'j']
 
 describe('evaluating BigO excercises', () => {
     for (let excercise of excercises) {
@@ -24,7 +24,7 @@ describe('evaluating BigO excercises', () => {
     }
 
     it('should answer the extra point 1', async () => {
-        const res = await fetchAnswer('extra1', EXTRA_POINT)
+        const res = await fetchAnswer('extra2', EXTRA_POINT)
 
         expect(res).toBe(Answers.CORRECT)
     });

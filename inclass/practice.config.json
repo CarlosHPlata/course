@@ -6,5 +6,9 @@
   "bigO": {
       "src": "./src/1_3_BigO/excercises",
       "type": "test-global"
+  },
+  "bigO2": {
+      "src": "./src/1_3_BigO/excercises2",
+      "type": "test-global"
   }
 }
