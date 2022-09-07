@@ -4,11 +4,19 @@
     "type": "code"
   },
   "bigO": {
-      "src": "./src/1_3_BigO/excercises",
-      "type": "test-global"
+    "src": "./src/1_3_BigO/excercises",
+    "type": "test-global"
   },
   "bigO2": {
-      "src": "./src/1_3_BigO/excercises2",
-      "type": "test-global"
+    "src": "./src/1_3_BigO/excercises2",
+    "type": "test-global"
+  },
+  "tdd-functional": {
+    "src": "./src/1_5_tdd/functional",
+    "type": "test-global"
+  },
+  "tdd-oo": {
+    "src": "./src/1_5_tdd/objectOriented",
+    "type": "test-global"
   }
 }
