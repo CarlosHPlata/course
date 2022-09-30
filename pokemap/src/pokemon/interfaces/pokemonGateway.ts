@@ -1,4 +1,4 @@
-import { PokemonData } from "../dtos/pokemonInfo.dto"
+import { PokemonData } from '../dtos/pokemonInfo.dto'
 
 export interface IPokemonGateway {
   getPokemonById(id: number): Promise<PokemonData>

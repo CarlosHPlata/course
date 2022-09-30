@@ -1,4 +1,3 @@
-
 export type PokemonMetaData = {
   id: number;
   pokedexNumber: number;
@@ -7,30 +6,28 @@ export type PokemonMetaData = {
   height: number;
   types: string[];
   stats: PokemonStats;
-}
+};
 
 export enum Gender {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
+  MALE = "MALE",
+  FEMALE = "FEMALE",
 }
 
 export type Move = {
-  name: string
-  level: number
-}
+  name: string;
+  level: number;
+};
 
 export type PokemonStats = {
-  hp: Stat
-  attack: Stat
-  defense: Stat
-  specialAttack: Stat
-  specialDefense: Stat
-  speed: Stat
-}
+  hp: Stat;
+  attack: Stat;
+  defense: Stat;
+  specialAttack: Stat;
+  specialDefense: Stat;
+  speed: Stat;
+};
 
 export type Stat = {
-  base: number
-  maxEvs: number
-}
-
-
+  base: number;
+  maxEvs: number;
+};
