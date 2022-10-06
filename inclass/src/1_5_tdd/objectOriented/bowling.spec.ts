@@ -51,3 +51,19 @@ describe('A bowling game', () => {
     }
   }
 });
+
+function rollStrike(game: BowlingGame) {
+  return game.Roll(10);
+}
+
+function rollSpare(game: BowlingGame) {
+  game.Roll(5)
+  return game.Roll(5)
+}
+
+function rollMany(game: BowlingGame, rolls: number, pins: number) {
+  for (let i = 0; i < rolls; i++) {
+    game.Roll(pins);
+  }
+}
+

@@ -1,0 +1,11 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "plugins": [],
+  "jsRules": {},
+  "rules": {
+    "no-console": false
+  },
+  "project": ["./tsconfig.json"],
+  "rulesDirectory": []
+}
