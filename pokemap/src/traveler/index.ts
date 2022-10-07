@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import { Point } from './dtos'
+import { zoneFinder } from './infrastructure/zoneFinder'
+import { ZoneFinder } from './interfaces/ZoneFinder'
 import Traveler from './useCases/travel'
 
 const router = Router()
@@ -13,7 +15,14 @@ router.get('/travelto', (req, res) => {
     long: long as any,
   }
 
-  new Traveler().travelTo(pos).then((context) => res.send(context))
+  const fake: ZoneFinder = () =>
+    Promise.resolve({
+      id: 1,
+      name: 'string',
+      families: [],
+    })
+
+  new Traveler(zoneFinder).travelTo(pos).then((context) => res.send(context))
 })
 
 export default router
