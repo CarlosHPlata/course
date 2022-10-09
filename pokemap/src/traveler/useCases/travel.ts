@@ -5,6 +5,7 @@ import { getRandomInt } from '../utils/math.utils'
 import { Pokemon } from '../../pokemon'
 import { GarchompMock } from '../dtos/mock'
 import { ZoneFinder } from '../interfaces/ZoneFinder'
+import { generateRandomPokemon } from './pokeom'
 
 export default class Traveler {
   constructor(private zoneFinder: ZoneFinder) {}
@@ -39,9 +40,13 @@ export default class Traveler {
     return new Zone(name, familiesInZone)
   }
 
-  //do it later
   private async generateRandomEncounter(zone: Zone): Promise<Pokemon> {
-    return GarchompMock
+    const pokemonFamily = zone.generateFamilyEncounter(this.generateRandomHit())
+
+    const randomPokemonIndex = this.generateRandomHit(pokemonFamily.length) - 1
+    const { id } = pokemonFamily[randomPokemonIndex]
+
+    return generateRandomPokemon(id)
   }
 
   private generateRandomHit(max = MAX_RANDOM_HIT_VALUE) {
