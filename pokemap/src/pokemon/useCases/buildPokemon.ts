@@ -22,8 +22,8 @@ const buildSprite = (sprites: Sprites, base: PokemonBaseData): string => {
 }
 
 export const buildPokemon = async (
-  builder: PokemonBuilder,
-  id: number
+  id: number,
+  builder: PokemonBuilder
 ): Promise<Pokemon> => {
   const pokemonData = await getPokemon({ id })
   const baseData = await builder.buildBaseData(pokemonData.id, pokemonData.name)

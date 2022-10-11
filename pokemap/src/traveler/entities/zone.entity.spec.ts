@@ -36,9 +36,9 @@ describe('When testing Zone', () => {
 
       const zone = makeZone({ families: [starters, fireType] })
 
-      expect(zone.generateEncounter(POBABILITY_FOR_FIRE_TYPE_TO_APPEAR)).toBe(
-        fireType.family
-      )
+      expect(
+        zone.generateFamilyEncounter(POBABILITY_FOR_FIRE_TYPE_TO_APPEAR)
+      ).toBe(fireType.family)
     })
   })
 })

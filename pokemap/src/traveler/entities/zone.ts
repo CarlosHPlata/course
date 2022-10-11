@@ -19,7 +19,7 @@ export default class Zone {
     return false
   }
 
-  public generateEncounter(probabilityHit: number): Family {
+  public generateFamilyEncounter(probabilityHit: number): Family {
     const famInZone = this.getFamilyFromProbability(probabilityHit)
     return famInZone.family
   }
