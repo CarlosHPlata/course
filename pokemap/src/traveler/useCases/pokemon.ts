@@ -3,14 +3,30 @@ import {
   Gender,
   Move,
   PokemonBaseData,
+  PokemonBuilder,
   PokemonMoves,
   PokemonStats,
-} from 'src/pokemon'
+} from '../../pokemon'
 import { GarchompMock } from '../dtos/mock'
 import { getRandomInt } from '../utils/math.utils'
 
 export const generateRandomPokemon = (id: number) => {
-  return GarchompMock
+  const builder: PokemonBuilder = {
+    buildBaseData: async () => {
+      const pokemonData: PokemonBaseData = {
+        gender: generateRandomGender(),
+        isShiny: canBeRandomShiny(),
+      }
+      return pokemonData
+    },
+    buildMoves: async (moves: Move[]) => {
+      return generateRandomSetOfMoves(moves)
+    },
+    buildStats: async (statsData: PokemonStats) => {
+      return generateRandomStats(statsData)
+    },
+  }
+  return buildPokemon(id, builder) // <-----------------------
 }
 
 ///--------------------
