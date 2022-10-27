@@ -6,6 +6,7 @@ PRACTICE_FOLDER=$(node -p "require('./practice.config.json').$1.src")
 CODE_TYPE="code"
 TEST_GLOBAL_TYPE="test-global"
 TEST_TYPE="test"
+DOJO_TYPE="dojo"
 
 TYPE="$PRACTICE_TYPE"
 
@@ -19,6 +20,9 @@ elif [ "$TYPE" = "$TEST_TYPE" ]; then
     
 elif [ "$TYPE" = "$TEST_GLOBAL_TYPE" ]; then
     npm test -- ${PRACTICE_FOLDER}/
+
+elif [ "$TYPE" = "$DOJO_TYPE" ]; then
+    npm test -- ${PRACTICE_FOLDER} --watch
 
 else
     echo "No type supported"

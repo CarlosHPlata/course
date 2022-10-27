@@ -18,5 +18,21 @@
   "tdd_oo": {
     "src": "./src/1_5_tdd/objectOriented",
     "type": "test-global"
+  },
+  "fizzbuzz": {
+    "src": "./src/1_0_Dojo/fizzbuzz/",
+    "type": "dojo"
+  },
+  "primeFactors": {
+    "src": "./src/1_0_Dojo/primeFactors/",
+    "type": "dojo"
+  },
+  "roman": {
+    "src": "./src/1_0_Dojo/romanNumerals/",
+    "type": "dojo"
+  },
+  "life": {
+    "src": "./src/1_0_Dojo/gameOfLife/",
+    "type": "dojo"
   }
 }
