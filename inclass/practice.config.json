@@ -30,5 +30,9 @@
   "roman": {
     "src": "./src/1_0_Dojo/romanNumerals/",
     "type": "dojo"
+  },
+  "life": {
+    "src": "./src/1_0_Dojo/gameOfLife/",
+    "type": "dojo"
   }
 }
