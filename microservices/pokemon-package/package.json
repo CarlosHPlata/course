@@ -1,0 +1,25 @@
+{
+  "name": "@clean/pokemon",
+  "version": "1.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "publish-version": "./scripts/publish.sh",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mount-registry": "./scripts/mount-registry.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^28.1.2",
+    "jest": "^28.1.1",
+    "nodemon": "^2.0.18",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {}
+}

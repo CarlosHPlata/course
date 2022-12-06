@@ -1,0 +1,116 @@
+#encounter-load-animation {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  background: green;
+  top: 25%;
+  transform: rotate(45deg);
+  visibility: hidden;
+}
+#encounter-load-animation.show {
+  visibility: visible;
+}
+#lineh1 {
+  position: absolute;
+  left: 0;
+  height: 10px;
+  background: #5500aa;
+  animation: lineH 1s 5s infinite linear;
+}
+#lineh2 {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  height: 10px;
+  background: #aa2b00;
+  animation: lineH 2s 0.5s infinite linear;
+}
+#lineh3 {
+  position: absolute;
+  left: 0;
+  top: 70px;
+  height: 10px;
+  background: #00d4ff;
+  animation: lineH 2s 2s infinite linear;
+}
+#lineh4 {
+  position: absolute;
+  right: 0;
+  top: 100px;
+  height: 10px;
+  background: #00aa2b;
+  animation: lineH 2s 1s infinite linear;
+}
+#lineh5 {
+  position: absolute;
+  left: 0;
+  top: 130px;
+  height: 10px;
+  background: #aa8000;
+  animation: lineH 2s 4s infinite linear;
+}
+#lineh6 {
+  position: absolute;
+  right: 0;
+  top: 160px;
+  height: 10px;
+  background: #17cb7a;
+  animation: lineH 2s 3s infinite linear;
+}
+#lineh7 {
+  position: absolute;
+  right: 0;
+  top: 190px;
+  height: 10px;
+  background: #d50055;
+  animation: lineH 1s 0s infinite linear;
+}
+#lineh8 {
+  position: absolute;
+  left: 0;
+  top: 220px;
+  height: 10px;
+  background: #00ffff;
+  animation: lineH 1s 1.5s infinite linear;
+}
+#lineh9 {
+  position: absolute;
+  left: 0;
+  top: 250px;
+  height: 10px;
+  background: #2b002b;
+  animation: lineH 1s 2s infinite linear;
+}
+#lineh10 {
+  position: absolute;
+  right: 0;
+  top: 280px;
+  height: 10px;
+  background: #005580;
+  animation: lineH 1s 3s infinite linear;
+}
+#lineh11 {
+  position: absolute;
+  right: 0;
+  top: 310px;
+  height: 10px;
+  background: #ff557f;
+  animation: lineH 1s 1s infinite linear;
+}
+#lineh12 {
+  position: absolute;
+  right: 0;
+  top: 340px;
+  height: 10px;
+  background: #85b085;
+  animation: lineH 3s 1s infinite linear;
+}
+@keyframes lineH {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 95%;
+    opacity: 0;
+  }
+}

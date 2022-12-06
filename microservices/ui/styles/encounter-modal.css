@@ -1,0 +1,139 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 8888;
+}
+
+.modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 70%;
+  max-width: 900px;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  visibility: hidden;
+}
+
+.modal-box.show {
+  visibility: visible;
+}
+
+.modal-box #header {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-box #header h1 {
+  text-align: center;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.modal-box .buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+
+.move {
+  background-color: #c1c1f3;
+  margin: 0 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.modal-box #header h1 #encounter-name {
+  color: #951a1a;
+  font-size: 25pt;
+}
+
+.modal-box #content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.modal-box #content #image-container {
+  display: flex;
+  justify-content: center;
+  flex-grow: 3;
+  align-items: center;
+}
+
+.modal-box #content #encounter-info {
+  flex-grow: 2;
+  max-width: 400px;
+}
+
+.modal-box #content #encounter-info h2 {
+  border-top: 1px solid;
+  border-color: gray;
+}
+
+.modal-box #content #encounter-info ul {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.modal-box #content #encounter-info ul li {
+  margin-top: 5px;
+  font-size: 16pt;
+  display: inline-block;
+}
+
+.modal-box #content #encounter-info ul li .plate {
+  font-weight: bold;
+  color: #cf2727;
+}
+
+.modal-box #content #encounter-info ul li .ev {
+  font-size: 11pt;
+  font-weight: lighter;
+  color: #df54c1;
+}
+
+.modal-box #content #encounter-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-box #content #encounter-image-container .pokemon-sprite {
+  width: 250px;
+  height: 250px;
+}
+
+
+.encounter-btn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.encounter-btn:disabled {
+  background-color: grey;
+}

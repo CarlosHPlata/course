@@ -1,0 +1,41 @@
+#trainer {
+  background-color: #e5e5e5;
+  max-height: 100%;
+  overflow: scroll;
+}
+
+.trainer-pokemon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: #d1d1d1;
+}
+
+.trainer-pokemon-img {
+  width: 96px;
+  height: 96px;
+}
+
+.trainer-pokemon-name {
+  margin: 10px 0;
+}
+
+.trainer-pokemon-name h1 {
+  font-size: 14pt;
+  margin: 0;
+}
+
+.trainer-pokemon-name span {
+  color: #e14b4b;
+}
+
+.moves-count {
+  background-color: #c1c1f3;
+  padding: 3px;
+  border-radius: 10px;
+}

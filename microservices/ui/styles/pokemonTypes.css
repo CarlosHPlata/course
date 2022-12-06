@@ -1,0 +1,120 @@
+
+.types span {
+  border-style: solid none;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 0.15em 0.3em;
+  font-variant: small-caps;
+  font-size: 12pt;
+  color: #f8f8f8;
+  text-shadow: 0 1px 1px #807870;
+  margin: 0 3px;
+}
+
+.types .normal {
+  background-color: #a8a878;
+  border-top-color: #d8d8d0;
+  border-bottom-color: #705848;
+}
+
+.types .fire {
+  background-color: #f08030;
+  border-top-color: #f8d030;
+  border-bottom-color: #c03028;
+}
+
+.types .water {
+  background-color: #6890f0;
+  border-top-color: #98d8d8;
+  border-bottom-color: #807870;
+}
+
+.types .grass {
+  background-color: #78c850;
+  border-top-color: #c0f860;
+  border-bottom-color: #588040;
+}
+
+.types .electric {
+  background-color: #f8d030;
+  border-top-color: #f8f878;
+  border-bottom-color: #b8a038;
+}
+
+.types .ice {
+  background-color: #98d8d8;
+  border-top-color: #d0f8e8;
+  border-bottom-color: #9090a0;
+}
+
+.types .fighting {
+  background-color: #c03028;
+  border-top-color: #f08030;
+  border-bottom-color: #484038;
+}
+
+.types .poison {
+  background-color: #c03028;
+  border-top-color: #f08030;
+  border-bottom-color: #484038;
+}
+
+.types .ground {
+  background-color: #e0c068;
+  border-top-color: #f8f878;
+  border-bottom-color: #886830;
+}
+
+.types .flying {
+  background-color: #a890f0;
+  border-top-color: #c8c0f8;
+  border-bottom-color: #705898;
+}
+
+.types .psychic {
+  background-color: #f85888;
+  border-top-color: #f8c0b0;
+  border-bottom-color: #789010;
+}
+
+.types .bug {
+  background-color: #a8b820;
+  border-top-color: #d8e030;
+  border-bottom-color: #a8b820;
+}
+
+.types .rock {
+  background-color: #b8a038;
+  border-top-color: #e0c068;
+  border-bottom-color: #886830;
+}
+
+.types .ghost {
+  background-color: #705898;
+  border-top-color: #a890f0;
+  border-bottom-color: #483850;
+}
+
+.types .dark {
+  background-color: #705848;
+  border-top-color: #a8a878;
+  border-bottom-color: #484038;
+}
+
+.types .dragon {
+  background-color: #7038f8;
+  border-top-color: #b8a0f8;
+  border-bottom-color: #483890;
+}
+
+.types .steel {
+  background-color: #b8b8d0;
+  border-top-color: #d8d8c0;
+  border-bottom-color: #807870;
+}
+
+.types .fairy {
+  background-color: #f0b6bc;
+  border-top-color: #f5cad1;
+  border-bottom-color: #905f63;
+}

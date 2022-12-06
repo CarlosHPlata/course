@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/pokemonTypes.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/encounter-modal.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/pokeball-animations.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/encounter-animations.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/trainer-bar.css" />
+    <script type="module" src="./index.ts"></script>
+  </head>
+  <body>
+
+    <div id="page">
+      <div id="map"></div>
+      <div id="trainer">
+        <h1>Trainer ID: 1</h1>
+
+        <div class="trainer-pokemons" id="trainer-pokemons-list">
+    
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div id="encounter-load-animation">
+      <div id="lineh1"></div>
+      <div id="lineh2"></div>
+      <div id="lineh3"></div>
+      <div id="lineh4"></div>
+      <div id="lineh5"></div>
+      <div id="lineh6"></div>
+      <div id="lineh7"></div>
+      <div id="lineh8"></div>
+      <div id="lineh9"></div>
+      <div id="lineh10"></div>
+      <div id="lineh11"></div>
+      <div id="lineh12"></div>
+    </div>
+
+
+    <div class="modal">
+      <div class="modal-box">
+        <div id="header">
+          <h1>You have encounter a <br/><span id="encounter-name"></span></h1>
+          <span class="types" id="encounter-types"></span>
+        </div>
+        <div id="content">
+          
+          <div id="encounter-image-container"></div>
+          <div id="encounter-info">
+            <h2>info</h2>
+            <ul>
+              <li>
+                <span class="plate">pokedex:</span>
+                <span id="encounter-pokedex-no"></span>
+              </li>
+              <li>
+                <span class="plate">gender:</span>
+                <span id="encounter-gender"></span>
+              </li>
+            </ul>
+
+            <h2>Moves</h2>
+            <div id="encounter-moves"></div>
+
+            <h2>Stats</h2>
+            <ul>
+              <li>
+                <span class="plate">hp:</span>
+                <span id="encounter-hp"></span><span class="ev">(<span id="encounter-hp-ev"></span>)</span>
+              </li>
+              <li>
+                <span class="plate">attack:</span>
+                <span id="encounter-attack"></span><span class="ev">(<span id="encounter-attack-ev"></span>)</span>
+              </li>
+              <li>
+                <span class="plate">defense:</span>
+                <span id="encounter-defense"></span><span class="ev">(<span id="encounter-defense-ev"></span>)</span>
+              </li>
+              <li>
+                <span class="plate">speed:</span>
+                <span id="encounter-speed"></span><span class="ev">(<span id="encounter-speed-ev"></span>)</span>
+              </li>
+              <li>
+                <span class="plate">sp attack:</span>
+                <span id="encounter-special-attack"></span><span class="ev">(<span id="encounter-special-attack-ev"></span>)</span>
+              </li>
+              <li>
+                <span class="plate">sp defense:</span>
+                <span id="encounter-special-defense"></span><span class="ev">(<span id="encounter-special-defense-ev"></span>)</span>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <div class="buttons">
+          <button class="encounter-btn" id="encounter-capture">Capture</button>
+          <button class="encounter-btn" id="encounter-flee">Flee</button>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9ASegTHsLgBJPQkq6A_CUTCqL-agqnhY&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

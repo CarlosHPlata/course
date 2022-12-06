@@ -1,16 +1,19 @@
 import { Cell } from './board'
 import { CellSet } from './CellSet'
 
-export const liveCell = '■ '
-export const deadCell = '□ '
-
-export const seed1 = () =>
-  stringToSeed(`..O....O..
+const seeds = new Map([
+  [
+    'penta',
+    `..O....O..
 OO.OOOO.OO
-..O....O..`)
+..O....O..`,
+  ],
 
-export const seed2 = () =>
-  stringToSeed(`..OOO...OOO..
+  ['blinker', '.....\n.OOO.\n.....'],
+
+  [
+    'pulsar',
+    `..OOO...OOO..
 .............
 O....O.O....O
 O....O.O....O
@@ -22,7 +25,22 @@ O....O.O....O
 O....O.O....O
 O....O.O....O
 .............
-..OOO...OOO..`)
+..OOO...OOO..`,
+  ],
+
+  [
+    'shotgun',
+    `........................O...........
+......................O.O...........
+............OO......OO............OO
+...........O...O....OO............OO
+OO........O.....O...OO..............
+OO........O...O.OO....O.O...........
+..........O.....O.......O...........
+...........O...O....................
+............OO......................`,
+  ],
+])
 
 const stringToSeed = (pattern: string): Set<Cell> => {
   const cells = new CellSet()
@@ -43,3 +61,9 @@ const stringToSeed = (pattern: string): Set<Cell> => {
 
   return cells
 }
+
+export const seed = (seedName: 'pulsar' | 'penta' | 'blinker' | 'shotgun') =>
+  stringToSeed(seeds.get(seedName))
+
+export const LIVE_CELL_CHAR = '■ '
+export const DEAD_CELL_CHAR = '□ '

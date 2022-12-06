@@ -10,15 +10,13 @@ services:
       MYSQL_DATABASE: '${DB_NAME}'
       MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
     ports:
-      - '3306:3306'
-    expose:
-      - '3306'
+      - '3307:3306'
     volumes:
-      - v-local-mysql:/var/lib/mysql
+      - v-local-mysql2:/var/lib/mysql
   migrations:
     image: flyway/flyway
     container_name: poke-map-migration
-    command: -url=jdbc:mysql://database -schemas=${DB_NAME} -user=${DB_USER} -password=${DB_PASSWORD} -connectRetries=60 migrate
+    command: -url=jdbc:mysql//database -schemas=${DB_NAME} -user=${DB_USER} -password=${DB_PASSWORD} -connectRetries=60 migrate
     volumes:
       - ./migrations:/flyway/sql
     depends_on:
@@ -45,4 +43,4 @@ services:
     depends_on:
       - migrations
 volumes:
-  v-local-mysql:
+  v-local-mysql2:

@@ -1,0 +1,34 @@
+
+.pokeball.loading {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-name: shake;
+}
+
+@keyframes shake {
+
+  from {
+    transform: none;
+  }
+
+  20% {
+    transform: translate3d(-20%, 0, 0) rotate3d(0, 0, 1, -10deg);
+  }
+
+  40% {
+    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, -5deg);
+  }
+
+  50% {
+    transform: translate3d(-10%, 0, 0) rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 5deg);
+  }
+
+  to {
+    transform: none;
+  }
+}
