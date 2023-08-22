@@ -1,3 +1,6 @@
 {
- 
+  "cleanCode": {
+    "src": "./src/1_CleanCode/before",
+    "type": "code"
+  }
 }
