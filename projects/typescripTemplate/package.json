@@ -1,0 +1,16 @@
+{
+  "name": "quality-project-tools",
+  "version": "1.0.0",
+  "description": "A project just to install quality tools",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
