@@ -6,5 +6,13 @@
   "bigO": {
     "src": "./src/2_BigO/challenge",
     "type": "test-global"
+  },
+  "tdd_f": {
+    "src": "./src/3_TDD/functional",
+    "type": "dojo"
+  },
+  "tdd_oo": {
+    "src": "./src/3_TDD/objectOriented",
+    "type": "dojo"
   }
 }
