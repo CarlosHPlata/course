@@ -14,5 +14,9 @@
   "tdd_oo": {
     "src": "./src/3_TDD/objectOriented",
     "type": "dojo"
+  },
+  "fizzbuzzbar": {
+    "src": "./src/4_Dojo/fizzBuzzBar",
+    "type": "dojo"
   }
 }
