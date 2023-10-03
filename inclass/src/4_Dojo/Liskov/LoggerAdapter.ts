@@ -1,6 +1,9 @@
 
-export interface LoggerAdapter {
-  start: () => LoggerAdapter
-  log: (type: 'error' | 'info', payload: string) => void
+export interface LoggerSystem {
+  start: () => LoggerSystem
   stop: () => void
+}
+
+export interface Logger {
+  log: (type: 'error' | 'info', payload: string) => void
 }

@@ -1,4 +1,9 @@
+import { Logger } from "./LoggerAdapter";
 
-export class SimpleLogger {
-  //every time log do console log
+export class SimpleLogger implements Logger {
+
+  log(type: "error" | "info", payload: string) {
+    console.log("type :" + type + ", payload :" + payload)
+  }
+
 }

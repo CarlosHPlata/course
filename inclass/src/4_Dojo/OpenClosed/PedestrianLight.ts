@@ -1,16 +1,16 @@
 import { Lightbulb } from "./Lightbulb"
+import { Publisher } from "./Publisher"
 
 export type LightState = 'green' | 'yellow' | 'red'
 
-export class PedestrianLight {
+export class PedestrianLight extends Publisher {
   private state: LightState
 
   constructor(
-    private isGreen: boolean,
-    private lightbulb: Lightbulb
+    private isGreen: boolean
   ) {
+    super()
     this.state = isGreen ? 'green' : 'red'
-    this.lightbulb.showLight(this.state)
   }
 
   change() {
@@ -30,7 +30,7 @@ export class PedestrianLight {
 
   setAndNotifyLightState(state: LightState) {
     this.state = state
-    this.lightbulb.showLight(this.state)
+    this.notify(state);
   }
 
 }
