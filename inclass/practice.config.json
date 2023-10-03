@@ -18,5 +18,13 @@
   "fizzbuzzbar": {
     "src": "./src/4_Dojo/fizzBuzzBar",
     "type": "dojo"
+  },
+  "openClosed": {
+    "src": "./src/4_Dojo/OpenClosed/index",
+    "type": "scode"
+  },
+  "liskov": {
+    "src": "./src/4_Dojo/Liskov/index",
+    "type": "scode"
   }
 }
