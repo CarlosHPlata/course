@@ -26,5 +26,9 @@
   "liskov": {
     "src": "./src/4_Dojo/Liskov/index",
     "type": "scode"
+  },
+  "life": {
+    "src": "./src/4_Dojo/GameOfLife/index",
+    "type": "scode"
   }
 }
