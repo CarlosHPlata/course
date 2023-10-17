@@ -1,5 +1,23 @@
-const game = (printer, seed, opts) => {
+import { Board, createBoard } from "./board"
+import { Cell } from "./models/Cell"
+import { Printer } from "./utils/printer"
 
+type Opts = { size: [number, number], frames: number }
+
+export const game = (printer: Printer, seed: Set<Cell>, opts: Opts) => {
+  const board = createBoard(seed)
+
+  runGame(printer, board, opts)
+}
+
+const runGame = (printer: Printer, board: Board, opts: Opts) => {
+  printer(board, opts.size);
+
+  setTimeout(() => runGame(
+    printer,
+    board.goNext(),
+    { size: opts.size, frames: opts.frames - 1 }
+  ), 1000)
 }
 /**
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠒⠢⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

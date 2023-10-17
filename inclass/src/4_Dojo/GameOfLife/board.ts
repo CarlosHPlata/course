@@ -2,7 +2,7 @@ import { Cell } from "./models/Cell"
 import { CellSet } from "./models/CellSet"
 
 
-export function createBoard(cells: Set<Cell> = new CellSet()) {
+export function createBoard(cells: Set<Cell> = new CellSet()): Board {
   return {
     addCell: (cell: Cell) => addCell(cells, cell),
     isAlive: (cell: Cell) => isAlive(cells, cell),
@@ -59,5 +59,12 @@ const goNext = (cells: Set<Cell>) => {
   })
 
   return newBoard
+}
+
+export type Board = {
+  addCell: (cell: Cell) => void;
+  isAlive: (cell: Cell) => boolean;
+  getNeighbours: (cell: Cell) => Set<Cell>;
+  goNext: () => Board;
 }
 //

@@ -1,7 +1,9 @@
+import { Board } from "../board"
+
 export const LIVE_CELL_CHAR = '██'//'■'
 export const DEAD_CELL_CHAR = '  '//'□'
 
-export const printGame = (board, size: [number, number]) => {
+export const printGame = (board: Board, size: [number, number]) => {
   const [maxColumns, maxRows] = size
   let screen = ''
 
@@ -17,4 +19,4 @@ export const printGame = (board, size: [number, number]) => {
   console.log(screen)
 }
 
-export type Printer = (board: any, size: [number, number]) => void
+export type Printer = (board: Board, size: [number, number]) => void
