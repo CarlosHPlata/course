@@ -1,11 +1,15 @@
 import PokemonEncounter from './PokemonEncounter'
-import { TrainerSaver } from './TrainerSaver'
-import { runTransaction } from './databaseConnections/dbcon'
+import { TrainerRepository } from './TrainerRepository'
 import { Pokemon } from './dtos/pokemon.dto'
 import { getRandomHit } from './utils'
 
 export class Capturer {
   private trainerId: number | undefined
+  private readonly trainerRepository: TrainerRepository
+
+  constructor(trainerRepository: TrainerRepository) {
+    this.trainerRepository = trainerRepository
+  }
 
   public withId(trainerId: number) {
     this.trainerId = trainerId
@@ -16,11 +20,9 @@ export class Capturer {
     const canBeCaptured = this.canBeCaptured(wildPokemon)
     let pcId: number | undefined
 
-    console.log('Pokemon can be captured ', canBeCaptured)
     if (canBeCaptured) {
       const capturedPokemon = await this.capturePokemon(wildPokemon)
       pcId = capturedPokemon.pcId
-      console.log('pokemon captured in your PC, id is: ', pcId)
     }
 
     return { captured: canBeCaptured, pcId }
@@ -35,20 +37,8 @@ export class Capturer {
   private async capturePokemon(wildPokemon: Pokemon) {
     if (this.trainerId == null) throw new Error('trainer id not defined')
 
-    const trainerSaver = new TrainerSaver()
-    wildPokemon.pcId = await trainerSaver.getNewPcId()
+    return await this.trainerRepository.capturePokemon(this.trainerId, wildPokemon)
 
-    const savePokemonQuery = trainerSaver.createSavePokemonQuery(this.trainerId, wildPokemon)
-    const savePokemonStatsQuery = trainerSaver.createSavePokemonStatsQuery(wildPokemon)
-    const movesQueries = trainerSaver.createPokemonMovesQueries(wildPokemon)
-
-    await runTransaction([
-      savePokemonQuery,
-      savePokemonStatsQuery,
-      ...movesQueries
-    ])
-
-    return wildPokemon
   }
 
 }
