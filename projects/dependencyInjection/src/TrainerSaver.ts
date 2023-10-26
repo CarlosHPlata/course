@@ -1,26 +1,9 @@
-import { buildQueryString, runQuery, runTransaction } from './databaseConnections/dbcon'
+import { buildQueryString, runQuery } from './databaseConnections/dbcon'
 import { Gender, Pokemon } from './dtos/pokemon.dto'
 
-export class TrainerStore {
+export class TrainerSaver {
 
-
-  async savePokemon(userId: number, pokemon: Pokemon): Promise<Pokemon> {
-    pokemon.pcId = await this.getNewPcId()
-
-    const savePokemonQuery = this.createSavePokemonQuery(userId, pokemon)
-    const savePokemonStatsQuery = this.createSavePokemonStatsQuery(pokemon)
-    const movesQueries = this.createPokemonMovesQueries(pokemon)
-
-    await runTransaction([
-      savePokemonQuery,
-      savePokemonStatsQuery,
-      ...movesQueries
-    ])
-
-    return pokemon
-  }
-
-  private async getNewPcId(): Promise<number> {
+  public async getNewPcId(): Promise<number> {
     const selRes = await runQuery(`
       SELECT 
         MAX(pc_id)+1 as pc_id
@@ -33,7 +16,7 @@ export class TrainerStore {
   }
 
 
-  private createSavePokemonQuery(userId: number, pokemon: Pokemon) {
+  createSavePokemonQuery(userId: number, pokemon: Pokemon) {
     return buildQueryString(
       `
         INSERT INTO pokemon_pc
@@ -52,7 +35,7 @@ export class TrainerStore {
   }
 
 
-  private createSavePokemonStatsQuery({ stats, pcId }: Pokemon) {
+  createSavePokemonStatsQuery({ stats, pcId }: Pokemon) {
     return buildQueryString(
       `
         INSERT INTO pokemon_pc_stats 
@@ -78,7 +61,7 @@ export class TrainerStore {
     )
   }
 
-  private createPokemonMovesQueries({ moves, pcId }: Pokemon): string[] {
+  createPokemonMovesQueries({ moves, pcId }: Pokemon): string[] {
     const queries: string[] = []
 
     moves

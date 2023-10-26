@@ -1,4 +1,4 @@
-import initServer from './src/server'
+import initServer from './server'
 import * as dotenv from 'dotenv'
 
 

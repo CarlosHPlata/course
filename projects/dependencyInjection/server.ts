@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
-import CapturerRouter from './router'
+import CapturerRouter from './src/CapturerRouter'
 
 
 const initServer = () => {
