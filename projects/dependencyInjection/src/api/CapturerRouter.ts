@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import { Pokemon } from './dtos/pokemon.dto'
 import { Capturer } from './Capturer'
-import { TrainerSaver } from './TrainerSaver'
 
 const CapturerRouter = Router()
 
@@ -9,7 +8,7 @@ CapturerRouter.post('/capturer/:id/try', (httpRequest, httpResponse) => {
   const [trainerId, wildPokemon] = getRequestInformation(httpRequest)
   if (wildPokemon == null || trainerId == null) httpResponse.status(501).send('No body')
 
-  new Capturer(new TrainerSaver())
+  new Capturer()
     .withId(trainerId)
     .tryCapture(wildPokemon)
     .then(capturedInformation => httpResponse.send(capturedInformation))

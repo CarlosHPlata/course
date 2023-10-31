@@ -1,8 +1,12 @@
+import { InjectableSolid } from '../injectionLibrary/InjectableSolid'
 import { TrainerRepository } from './TrainerRepository'
 import { buildQueryString, runQuery, runTransaction } from './databaseConnections/dbcon'
 import { Gender, Pokemon } from './dtos/pokemon.dto'
 
+@InjectableSolid('TrainerRepository')
 export class TrainerSaver implements TrainerRepository {
+
+  private readonly prop: string = ''
 
   async capturePokemon(trainerId: number, wildPokemon: Pokemon): Promise<Pokemon> {
     wildPokemon.pcId = await this.getNewPcId()

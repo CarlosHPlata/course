@@ -1,15 +1,16 @@
+import { Autowired } from '../injectionLibrary/Autowired'
 import PokemonEncounter from './PokemonEncounter'
 import { TrainerRepository } from './TrainerRepository'
 import { Pokemon } from './dtos/pokemon.dto'
 import { getRandomHit } from './utils'
 
+import './TrainerSaver'
+
 export class Capturer {
   private trainerId: number | undefined
-  private readonly trainerRepository: TrainerRepository
 
-  constructor(trainerRepository: TrainerRepository) {
-    this.trainerRepository = trainerRepository
-  }
+  @Autowired('TrainerRepository')
+  private readonly trainerRepository!: TrainerRepository
 
   public withId(trainerId: number) {
     this.trainerId = trainerId
