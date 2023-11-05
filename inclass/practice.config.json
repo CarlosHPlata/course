@@ -14,5 +14,25 @@
   "tdd_oo": {
     "src": "./src/3_TDD/objectOriented",
     "type": "dojo"
+  },
+  "fizzbuzzbar": {
+    "src": "./src/4_Dojo/fizzBuzzBar",
+    "type": "dojo"
+  },
+  "openClosed": {
+    "src": "./src/4_Dojo/OpenClosed/index",
+    "type": "scode"
+  },
+  "liskov": {
+    "src": "./src/4_Dojo/Liskov/index",
+    "type": "scode"
+  },
+  "life": {
+    "src": "./src/4_Dojo/GameOfLife/index",
+    "type": "scode"
+  },
+  "lifetest": {
+    "src": "./src/4_Dojo/GameOfLife",
+    "type": "dojo"
   }
 }

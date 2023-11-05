@@ -1,0 +1,3 @@
+curl --location --request POST 'http://localhost:4000/capturer/1/try' \
+--header 'Content-Type: application/json' \
+--data-raw '{"id":41,"pokedexNumber":73,"name":"zubat","weight":75,"height":8,"types":["poison","flying"],"gender":"MALE","isShiny":false,"moves":[{"name":"frustration","level":0},null,null,null],"sprite":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png","stats":{"hp":{"base":40,"maxEvs":0},"attack":{"base":45,"maxEvs":0},"defense":{"base":35,"maxEvs":0},"specialAttack":{"base":30,"maxEvs":0},"specialDefense":{"base":40,"maxEvs":0},"speed":{"base":55,"maxEvs":0}}}'

@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  database:
+    platform: 'linux/amd64'
+    image: mysql:8
+    container_name: poke-map-database
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: '${DB_NAME}'
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - v-local-mysql:/var/lib/mysql
+  migrations:
+    image: flyway/flyway
+    container_name: poke-map-migrations
+    command: -url=jdbc:mysql://database -schemas=${DB_NAME} -user=${DB_USER} -password=${DB_PASSWORD} -connectRetries=60 migrate
+    volumes:
+      - ./migrations:/flyway/sql
+    depends_on:
+      - database
+volumes:
+  v-local-mysql:
