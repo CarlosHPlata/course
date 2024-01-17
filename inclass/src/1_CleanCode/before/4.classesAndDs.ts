@@ -5,9 +5,7 @@ const pokemon = {
   isMega: true,
   isLegendary: true,
 }
-const trainer = {
-  getPc: () => ({ getPCSlots: () => [{ pokemon }] })
-}
+const trainer = { getPc: () => ({ getPCSlots: () => [{ pokemon }] }) }
 
 class Attack {
   public readonly BASE_ATTACK = 20
