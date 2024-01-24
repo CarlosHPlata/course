@@ -13,7 +13,7 @@
 //This algorithm is a very famous one.
 
 export const ANSWER_J = 'O(n log n)'
-export const EXTRA_POINT2 = 'Quicksort' //todo is quicksort!
+export const EXTRA_POINT2 = 'Quicksort'
 
 // ------------------------
 
