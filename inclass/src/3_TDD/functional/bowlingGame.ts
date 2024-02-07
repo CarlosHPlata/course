@@ -30,7 +30,7 @@ const getScore = (state: State) => {
   let firstTry = 0
   for (let i = 0; i < FRAMES; i++) {
     if (isStrike(firstTry, state)) {
-      score = scoreForStrike(firstTry, state)
+      score += scoreForStrike(firstTry, state)
       firstTry++
     } else if (isSpare(firstTry, state)) {
       score += scoreForSpare(firstTry, state)
