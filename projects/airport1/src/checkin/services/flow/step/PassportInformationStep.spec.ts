@@ -1,8 +1,10 @@
 import { MockContext } from '@testMocks/model/Context.mock'
-import { Context } from '../../model/Context'
-import { checkPassportInformationOrFail, shouldCheckPassport } from './passportInformationStep'
+import { Context } from '../../../model/Context'
+import PassportInformationStep from './PassportInformationStep'
 
 describe('[ Step / PassportInformationStep ]', () => {
+  const step = new PassportInformationStep()
+
   describe('Test when it should be execute', () => {
     it('should execute when passport is not set in session user information', () => {
       const context: Context = new MockContext()
@@ -10,7 +12,7 @@ describe('[ Step / PassportInformationStep ]', () => {
         .userInformation({ passportNo: undefined })
       )
 
-      expect(shouldCheckPassport(context)).toBeTruthy()
+      expect(step.when(context)).toBeTruthy()
     })
 
     it('should not execute when passport is not set in session user information', () => {
@@ -19,7 +21,7 @@ describe('[ Step / PassportInformationStep ]', () => {
         .userInformation({ passportNo: 'G123' })
       )
 
-      expect(shouldCheckPassport(context)).toBeFalsy()
+      expect(step.when(context)).toBeFalsy()
     })
   })
 
@@ -30,7 +32,7 @@ describe('[ Step / PassportInformationStep ]', () => {
         .fields({ passport_number: undefined })
       )
 
-      const response = await checkPassportInformationOrFail(context)
+      const response = await step.onExecute(context)
 
       expect(response).toBeFalsy()
       expect(context.getResponse().requiredFiles?.passport_number).toBeNull()
@@ -45,7 +47,7 @@ describe('[ Step / PassportInformationStep ]', () => {
         .userInformation({ passportNo: undefined })
       )
 
-      const response = await checkPassportInformationOrFail(context)
+      const response = await step.onExecute(context)
 
       expect(response).toBeTruthy()
       expect(context.getSession().userInformation?.passportNo).toBe(passport)

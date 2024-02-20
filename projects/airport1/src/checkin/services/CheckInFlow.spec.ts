@@ -1,5 +1,5 @@
-import * as passportInformationStep from './step/passportInformationStep'
-import * as agreementSignStep from './step/agreementSignStep'
+import * as passportInformationStep from './flow/step/passportInformationStep'
+import * as agreementSignStep from './flow/step/agreementSignStep'
 import sessionUtils from './sessionManager'
 import { Session } from '../model/session'
 import { checkInFlow } from './CheckInFlow'

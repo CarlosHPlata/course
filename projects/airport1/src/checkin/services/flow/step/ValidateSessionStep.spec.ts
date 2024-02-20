@@ -1,5 +1,5 @@
 import { MockContext } from '@testMocks/model/Context.mock'
-import { Context } from '../../model/Context'
+import { Context } from '../../../model/Context'
 import { validateSessionOrFail } from './validateSessionStep'
 
 describe('[ Step / ValidateSessionStep ]', () => {

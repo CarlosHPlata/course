@@ -4,9 +4,9 @@ import { Context } from '../model/Context'
 import { RequestData } from '@http/Request'
 import { ResponseData } from '@http/Response'
 import sessionUtils from './sessionManager'
-import * as passportInformationStep from './step/passportInformationStep'
-import * as agreementSignStep from './step/agreementSignStep'
-import { validateSessionOrFail } from './step/validateSessionStep'
+import ValidateSessionStep from './flow/step/ValidateSessionStep'
+import PassportInformationStep from './flow/step/PassportInformationStep'
+import AgreementSignStep from './flow/step/AgreementSignStep'
 
 export const initFLow = async (rquestData: RequestData): Promise<ResponseData> => {
   try {
@@ -37,21 +37,15 @@ export const checkInFlow = async (requestData: RequestData): Promise<ResponseDat
 }
 
 const executeFlow = async (context: Context): Promise<ResponseData> => {
-  if (!(await validateSessionOrFail(context))) {
+  if (!(await new ValidateSessionStep().execute(context))) {
     return await endFlowContext(context)
   }
 
-  if (
-    passportInformationStep.shouldCheckPassport(context) &&
-    !(await passportInformationStep.checkPassportInformationOrFail(context))
-  ) {
+  if (!(await new PassportInformationStep().execute(context))) {
     return await endFlowContext(context)
   }
 
-  if (
-    agreementSignStep.shouldCheckAgreement(context) &&
-    !(await agreementSignStep.checkAgreementOrFail(context))
-  ) {
+  if (!(await new AgreementSignStep().execute(context))) {
     return await endFlowContext(context)
   }
 

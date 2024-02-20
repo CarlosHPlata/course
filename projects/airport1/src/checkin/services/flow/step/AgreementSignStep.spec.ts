@@ -1,19 +1,21 @@
 import { MockContext } from '@testMocks/model/Context.mock'
-import { Context } from '../../model/Context'
-import { checkAgreementOrFail, shouldCheckAgreement } from './agreementSignStep'
+import { Context } from '../../../model/Context'
+import { AgreementSignStep } from './AgreementSignStep'
 
 describe('[ Step / agreementSignStep ]', () => {
+  const step = new AgreementSignStep()
+
   describe('Testing when it should be executed', () => {
     it('should return true when agreement has not been signed', () => {
       const context: Context = wireContextMockWithAgreementInSession(false)
-      const result = shouldCheckAgreement(context)
+      const result = step.when(context)
 
       expect(result).toBeTruthy()
     })
 
     it('should return false when agreement is signed', () => {
       const context: Context = wireContextMockWithAgreementInSession(true)
-      const result = shouldCheckAgreement(context)
+      const result = step.when(context)
 
       expect(result).toBeFalsy()
     })
@@ -25,7 +27,7 @@ describe('[ Step / agreementSignStep ]', () => {
       context.withRequestBuilder(requestBuilder => requestBuilder
         .fields({})
       )
-      const result = await checkAgreementOrFail(context)
+      const result = await step.onExecute(context)
 
       expect(result).toBeFalsy()
       expect(context.getResponse().requiredFiles?.agreement_required).toBeNull()
@@ -37,7 +39,7 @@ describe('[ Step / agreementSignStep ]', () => {
         .fields({ agreement_required: false })
       )
 
-      const result = await checkAgreementOrFail(context)
+      const result = await step.onExecute(context)
       expect(result).toBeFalsy()
       expect(context.getResponse().requiredFiles?.agreement_required).toBeNull()
     })
@@ -48,7 +50,7 @@ describe('[ Step / agreementSignStep ]', () => {
         .fields({ agreement_required: true })
       )
 
-      const result = await checkAgreementOrFail(context)
+      const result = await step.onExecute(context)
       expect(result).toBeTruthy()
       expect(context.getSession().data.agreementSigned).toBeTruthy()
     })
