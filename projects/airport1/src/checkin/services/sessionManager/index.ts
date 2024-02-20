@@ -4,10 +4,12 @@ import { makeGetSession } from './getSession'
 import { flightsRepository } from '@external/FlightsRepository'
 import { makeMapRequestToSession } from './mapRequestToSession'
 
-const sessionUtils = {
+const sessionManager = {
   saveSession: makeSaveSession(saveSessionRepository),
   getSession: makeGetSession(getSessionRepository),
   mapInitRequestToSession: makeMapRequestToSession(flightsRepository)
 }
 
-export default sessionUtils
+export type SessionManager = typeof sessionManager
+
+export default sessionManager

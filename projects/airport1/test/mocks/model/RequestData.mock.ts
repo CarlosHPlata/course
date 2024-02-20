@@ -4,6 +4,7 @@ import { RequestData } from '@http/Request'
 const MOCKED_REQUEST_DATA: RequestData = {
   sessionId: '123-123-123-123-123',
   userId: 'user123',
+  country: 'US',
   flightNumbers: ['123', '123'],
   fields: {}
 }

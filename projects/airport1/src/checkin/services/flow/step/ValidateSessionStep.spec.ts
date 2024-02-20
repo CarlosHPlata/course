@@ -1,14 +1,16 @@
 import { MockContext } from '@testMocks/model/Context.mock'
 import { Context } from '../../../model/Context'
-import { validateSessionOrFail } from './validateSessionStep'
+import ValidateSessionStep from './ValidateSessionStep'
 
 describe('[ Step / ValidateSessionStep ]', () => {
+  const step = new ValidateSessionStep()
+
   it('should reject if session id not match', async () => {
     const context: Context = new MockContext()
       .withSessionBuilder(sb => sb.sessionId('aaa-123-123-123-123'))
       .withRequestBuilder(cb => cb.sessionId('zzz-123-123-123-123'))
 
-    const response = await validateSessionOrFail(context)
+    const response = await step.onExecute(context)
     expect(response).toBeFalsy()
     expect(context.getResponse().status).toBe('rejected')
   })
@@ -18,7 +20,7 @@ describe('[ Step / ValidateSessionStep ]', () => {
       .withSessionBuilder(sb => sb.userId('wrong'))
       .withRequestBuilder(cb => cb.userId('dontmatch'))
 
-    const response = await validateSessionOrFail(context)
+    const response = await step.onExecute(context)
     expect(response).toBeFalsy()
     expect(context.getResponse().status).toBe('rejected')
   })
@@ -34,7 +36,7 @@ describe('[ Step / ValidateSessionStep ]', () => {
         .userId('match')
       )
 
-    const response = await validateSessionOrFail(context)
+    const response = await step.onExecute(context)
     expect(response).toBeTruthy()
   })
 })

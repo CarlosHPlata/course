@@ -1,6 +1,6 @@
 import { MockContext } from '@testMocks/model/Context.mock'
 import { Context } from '../../../model/Context'
-import { AgreementSignStep } from './AgreementSignStep'
+import AgreementSignStep from './AgreementSignStep'
 
 describe('[ Step / agreementSignStep ]', () => {
   const step = new AgreementSignStep()
@@ -62,6 +62,7 @@ function wireContextMockWithAgreementInSession(agreementSigned: boolean): Contex
   context.withSessionBuilder(sessionBuilder => sessionBuilder
     .data({
       agreementSigned,
+      country: context.getSession().data.country,
       flights: context.getSession().data.flights
     })
   )

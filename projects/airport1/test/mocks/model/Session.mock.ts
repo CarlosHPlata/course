@@ -7,6 +7,7 @@ const MOCK_SESSION: Session = {
   sessionId: '123-123-123-123-123',
   userId: 'user123',
   data: {
+    country: 'US',
     flights: [
       {
         flightNumber: 'ABC123',
