@@ -22,6 +22,7 @@ const mapSessionData = (repository: IFlightRepository) => async (requestData: Re
   const flights = await repository(requestData)
 
   return Builder<SessionData>()
+    .country(requestData.country)
     .flights(flights)
     .build()
 }

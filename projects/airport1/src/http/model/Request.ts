@@ -1,7 +1,8 @@
 import { UUID } from 'crypto'
-import { RequiredField } from '../../checkin/model/Schema'
+import { CountryCode, RequiredField } from '../../checkin/model/Schema'
 
 export interface RequestData {
+  country: CountryCode
   sessionId: UUID
   userId: string
   flightNumbers: string[]

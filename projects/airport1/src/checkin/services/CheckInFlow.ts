@@ -7,6 +7,8 @@ import sessionUtils from './sessionManager'
 import ValidateSessionStep from './flow/step/ValidateSessionStep'
 import PassportInformationStep from './flow/step/PassportInformationStep'
 import AgreementSignStep from './flow/step/AgreementSignStep'
+import FlowExecuter from './flow/FlowExecuter'
+import CompleteCheckinStep from './flow/step/CompleteCheckinStep'
 
 export const initFLow = async (rquestData: RequestData): Promise<ResponseData> => {
   try {
@@ -26,7 +28,7 @@ export const initFLow = async (rquestData: RequestData): Promise<ResponseData> =
 
 export const checkInFlow = async (requestData: RequestData): Promise<ResponseData> => {
   try {
-    const context = await initFlowContext(requestData)
+    const context = await initContext(requestData)
     return await executeFlow(context)
   } catch (e) {
     console.error(e)
@@ -37,32 +39,20 @@ export const checkInFlow = async (requestData: RequestData): Promise<ResponseDat
 }
 
 const executeFlow = async (context: Context): Promise<ResponseData> => {
-  if (!(await new ValidateSessionStep().execute(context))) {
-    return await endFlowContext(context)
-  }
+  const flowExecuter = new FlowExecuter()
+    .and(new ValidateSessionStep())
+    .and(new PassportInformationStep())
+    .and(new AgreementSignStep())
+    .and(new CompleteCheckinStep())
 
-  if (!(await new PassportInformationStep().execute(context))) {
-    return await endFlowContext(context)
-  }
+  context = await flowExecuter.execute(context)
+  await sessionUtils.saveSession(context.getSession())
 
-  if (!(await new AgreementSignStep().execute(context))) {
-    return await endFlowContext(context)
-  }
-
-  context = context.withResponseBuilder(rb => rb.status('completed'))
-  return await endFlowContext(context)
+  return context.getResponse()
 }
 
-const initFlowContext = async (requestData: RequestData): Promise<Context> => {
+const initContext = async (requestData: RequestData): Promise<Context> => {
   const session: Session = await sessionUtils.getSession(requestData)
   const responseData = Builder<ResponseData>().status('rejected').build()
   return new Context(session, requestData, responseData)
-}
-
-const endFlowContext = async (context: Context): Promise<ResponseData> => {
-  context = context.withResponseBuilder(rb => rb
-    .sessionId(context.getSession().sessionId)
-  )
-  await sessionUtils.saveSession(context.getSession())
-  return context.getResponse()
 }
