@@ -1,12 +1,13 @@
 import { Router } from 'express'
 import { RequestData } from './model/Request'
-import { checkInFlow, initFLow } from '../checkin/services/CheckInFlow'
+import { FlowFacade } from '../checkin/services/FlowFacade'
+import sessionManager from '../checkin/services/sessionManager'
 
 const CheckInRouter = Router()
 
-CheckInRouter.post('/continue', (httpRequest, httpResponse) => {
+CheckInRouter.post('/init', (httpRequest, httpResponse) => {
   const body: RequestData = httpRequest.body as RequestData
-  checkInFlow(body)
+  new FlowFacade(sessionManager).init(body)
     .then((response) => httpResponse.send(response))
     .catch((e) => {
       console.error(e)
@@ -14,9 +15,9 @@ CheckInRouter.post('/continue', (httpRequest, httpResponse) => {
     })
 })
 
-CheckInRouter.post('/init', (httpRequest, httpResponse) => {
+CheckInRouter.post('/continue', (httpRequest, httpResponse) => {
   const body: RequestData = httpRequest.body as RequestData
-  initFLow(body)
+  new FlowFacade(sessionManager).checkIn(body)
     .then((response) => httpResponse.send(response))
     .catch((e) => {
       console.error(e)

@@ -3,9 +3,12 @@ import request, { Response } from 'supertest'
 import { RequestData } from '../../../src/http/model/Request'
 import { UUID } from 'crypto'
 import generateRequestDataMock from '../../mocks/model/RequestData.mock'
+import { CountryCode } from '../../../src/checkin/model/Schema'
 
-const initSession = async (app: Application, data?: Partial<RequestData>): Promise<UUID> => {
-  const requestData = generateRequestDataMock({ sessionId: undefined, ...data })
+interface RequiredData { sessionId: UUID, country: CountryCode }
+
+const initSession = async (app: Application, country: CountryCode, data?: Partial<RequestData>): Promise<UUID> => {
+  const requestData = generateRequestDataMock({ country, sessionId: (null) as unknown as UUID, ...data })
   const initResponse = await request(app).post('/init').send(requestData)
   const { sessionId } = initResponse.body
 
@@ -15,22 +18,24 @@ const initSession = async (app: Application, data?: Partial<RequestData>): Promi
   return sessionId
 }
 
-const initSessionWithPassport = (app: Application): Promise<UUID> => initSession(app, { fields: { passport_number: 'G123' } })
+const initSessionWithPassport = (app: Application, country: CountryCode): Promise<UUID> => initSession(app, country, { fields: { passport_number: 'G123' } })
 
-const continueRequest = async (app: Application, sessionId: UUID, data?: Partial<RequestData>): Promise<Response> => {
-  const continueRequest = generateRequestDataMock({ sessionId, ...data })
+const continueRequest = async (app: Application, requiredData: RequiredData, data?: Partial<RequestData>): Promise<Response> => {
+  const { sessionId, country } = requiredData
+
+  const continueRequest = generateRequestDataMock({ sessionId, country, ...data })
   return await request(app).post('/continue').send(continueRequest)
 }
 
-const fillPassport = (app: Application, sessionId: UUID, data?: Partial<RequestData>): Promise<Response> => continueRequest(
+const fillPassport = (app: Application, requiredData: RequiredData, data?: Partial<RequestData>): Promise<Response> => continueRequest(
   app,
-  sessionId,
+  requiredData,
   { fields: { passport_number: 'G123' }, ...data }
 )
 
-const signLegalAgreement = (app: Application, sessionId: UUID, data?: Partial<RequestData>): Promise<Response> => continueRequest(
+const signLegalAgreement = (app: Application, requiredData: RequiredData, data?: Partial<RequestData>): Promise<Response> => continueRequest(
   app,
-  sessionId,
+  requiredData,
   { fields: { agreement_required: true }, ...data }
 )
 

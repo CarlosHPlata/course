@@ -20,7 +20,8 @@ export default abstract class FlowStrategy {
         .sessionId(session.sessionId)
         .build()
     } catch (e) {
-      return this.rejectAtError(e as Error)
+      console.error(e)
+      return this.reject()
     }
   }
 
@@ -32,12 +33,12 @@ export default abstract class FlowStrategy {
 
       return context.getResponse()
     } catch (e) {
-      return this.rejectAtError(e as Error)
+      console.error(e)
+      return this.reject()
     }
   }
 
-  private rejectAtError(e: Error): ResponseData {
-    console.error(e)
+  protected reject(): ResponseData {
     return Builder<ResponseData>()
       .status('rejected')
       .build()

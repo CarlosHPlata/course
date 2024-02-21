@@ -11,10 +11,6 @@ const describeFlowTest = (message: string, cb: (app: Application) => void): void
     afterAll(async () => {
       await useRedisClient()
         .then(async (client) => {
-          await client.flushAll()
-          return client
-        })
-        .then(async (client) => {
           if (client.isOpen) {
             await client.quit()
           }

@@ -58,6 +58,7 @@ const fillSessionWithUserMockData = (mockedData: Partial<Session>, builder: IBui
   if (mockedData.data != null) {
     const data = Builder<SessionData>()
       .agreementSigned(mockedData.data.agreementSigned ?? false)
+      .country(mockedData.data.country ?? MOCK_SESSION.data.country)
       .flights(mockedData.data.flights ?? MOCK_SESSION.data.flights)
       .build()
 
