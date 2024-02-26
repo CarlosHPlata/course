@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/aviator/api/v1/flights"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "aviator/flights-success.json"
+  }
+}

@@ -1,0 +1,25 @@
+version: "3"
+services:
+  wiremock:
+    image: "wiremock/wiremock:latest"
+    container_name: wiremock
+    ports:
+     - 3001:8080
+    volumes:
+      - ./docker/wiremock:/home/wiremock
+    entrypoint: ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose"]
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes: 
+      - cache:/data
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_DATABASES=16
+volumes:
+  cache:
+    driver: local      

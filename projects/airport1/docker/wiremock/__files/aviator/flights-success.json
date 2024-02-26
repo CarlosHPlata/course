@@ -1,0 +1,26 @@
+[
+  {
+    "flightNumber": "ABC123",
+    "price": 500,
+    "from": {
+      "name": "JFK",
+      "country": "US"
+    },
+    "to": {
+      "name": "LAX",
+      "country": "US"
+    }
+  },
+  {
+    "flightNumber": "XYZ456",
+    "price": 700,
+    "from": {
+      "name": "LHR",
+      "country": "GB"
+    },
+    "to": {
+      "name": "CDG",
+      "country": "FR"
+    }
+  }
+]
