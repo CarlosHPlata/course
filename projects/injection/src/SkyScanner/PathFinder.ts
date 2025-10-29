@@ -2,14 +2,15 @@ import moment from 'moment'
 import { Airport } from './model/Airport'
 import { Flight } from './model/Flight'
 import { Path } from './model/Path'
-import { RoutesStore } from './RoutesStore'
+import { RoutesProvider } from './interfaces/routesProvider'
+
 
 interface Options { maxStops: number }
 export class PathFinder {
-  private readonly routesStore!: RoutesStore
+  private readonly routesStore!: RoutesProvider
 
-  constructor() {
-    this.routesStore = new RoutesStore
+  constructor(routesProvider: RoutesProvider) {
+    this.routesStore = routesProvider;
   }
 
   search(

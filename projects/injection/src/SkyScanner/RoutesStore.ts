@@ -1,9 +1,12 @@
 import { FlightStore } from './extras/FlightStore'
 import { IFlightsSubscriber } from './extras/IFlightSubscriber'
+import { RoutesProvider } from './interfaces/routesProvider'
+import { Wired } from './library/Wired'
 import { Airport } from './model/Airport'
 import { Flight } from './model/Flight'
 
-export class RoutesStore implements IFlightsSubscriber {
+@Wired("RoutesProvider")
+export class RoutesStore implements IFlightsSubscriber, RoutesProvider {
   private readonly airports: Map<string, Airport>
 
   constructor() {
