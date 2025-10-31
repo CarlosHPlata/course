@@ -3,15 +3,13 @@ import { Airport } from './model/Airport'
 import { Flight } from './model/Flight'
 import { Path } from './model/Path'
 import { RoutesProvider } from './interfaces/routesProvider'
+import { Inject } from './library/Inject'
 
 
 interface Options { maxStops: number }
 export class PathFinder {
+  @Inject("RoutesProvider")
   private readonly routesStore!: RoutesProvider
-
-  constructor(routesProvider: RoutesProvider) {
-    this.routesStore = routesProvider;
-  }
 
   search(
     startId: string,

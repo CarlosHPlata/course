@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { InstanceBox } from './InstanceBox'
 
-// @Wired("sadfasdfasd")
+// @Wired("token")
 export function Wired(token: string): ClassDecorator {
   return (target: Object) => {
     console.log(`registering ${token} for class ${(target as any).name}`)
