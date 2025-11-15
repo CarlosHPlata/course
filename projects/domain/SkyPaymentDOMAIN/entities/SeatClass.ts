@@ -1,6 +1,6 @@
 
 export enum SeatClass {
-  BASIC,
-  BUSINESS,
-  FIRST
+  BASIC = 'basic',
+  BUSINESS = 'business',
+  FIRST = 'first'
 }

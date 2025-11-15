@@ -2,7 +2,7 @@
 
 **As a** user  
 **I want** to complete the payment for my selected flights by providing flight numbers, seat classes, my user ID, and a payment token  
-**So that** I can finalize my booking and receive a clear approval or rejection along with the final total price.
+**So that** I can finalize my booking and receive a clear approval or rejection along with the final total price. 
 
 ---
 
