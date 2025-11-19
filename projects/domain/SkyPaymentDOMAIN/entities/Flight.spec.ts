@@ -1,7 +1,7 @@
 import { Flight } from "./Flight"
 
 describe('flight test', () => {
-  it('calculate flight', () => {
+  it('calculate flight price', () => {
     const flight = new Flight('123', 100);
 
     const seatTarif = 1

@@ -2,14 +2,17 @@ import { flightPurchaseAggregate } from "../aggregates/flightPurchaseAggregate"
 import { Flight } from "../entities/Flight"
 import { SeatClass } from "../entities/SeatClass"
 import IFlightRepository from "../interfaces/IFlightRepository"
+import { IPaymentMethod } from "../interfaces/IPaymentMethod"
 import { ITariffGateway } from "../interfaces/ITariffGateway"
 import IUserRepository from "../interfaces/IUserRepository"
 import { FlightPurchase } from "./FlightPurchase"
+import { PaymentFactory } from "./PaymentFactory"
 
 describe('flight purchase use case', () => {
   let mockUserRepository: jest.Mocked<IUserRepository>
   let mockFlightRepository: jest.Mocked<IFlightRepository>
   let mockTariffGateway: jest.Mocked<ITariffGateway>
+  let mockPaymentGateway: jest.Mocked<IPaymentMethod>
   let useCase: FlightPurchase
 
   beforeEach(() => {
@@ -32,10 +35,17 @@ describe('flight purchase use case', () => {
         first: 1
       }))
     }
+    mockPaymentGateway = {
+      pay: jest.fn((finalPrice, userId, email, token) => {
+        return Promise.resolve(`${token}_TSP`)
+      }),
+      getPrefix: jest.fn(() => 'BANK')
+    }
     useCase = new FlightPurchase(
       mockUserRepository,
       mockFlightRepository,
-      mockTariffGateway
+      mockTariffGateway,
+      new PaymentFactory(mockPaymentGateway)
     )
   })
 
@@ -73,6 +83,14 @@ describe('flight purchase use case', () => {
 
     const result = await useCase.purchase(info)
     expect(result.finalPrice).toBe(91)
+  })
+
+  it('pays', async () => {
+    const info = mockFlightPurchase()
+
+    const result = await useCase.purchase(info)
+    expect(result.finalPrice).toBe(91)
+    expect(result.status).toBe('APPROVED')
   })
 })
 
