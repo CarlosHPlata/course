@@ -26,7 +26,7 @@
     },
     "jsonBody": {
       "status": "ok",
-      "token": "{{request.query.token}}_TSC"
+      "token": "{{request.query.token}}_TSP"
     },
     "transformers": [
       "response-template"

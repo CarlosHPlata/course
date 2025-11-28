@@ -12,6 +12,6 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use('/health', healthRouter);
-app.use('/purchase', flightPurchaseRouter);
+app.use('/flight', flightPurchaseRouter);
 
 export default app;
