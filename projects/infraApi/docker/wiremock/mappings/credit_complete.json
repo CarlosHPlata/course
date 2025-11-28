@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "POST",
-    "urlPathPattern": "/payment/3ds/authroize",
+    "urlPathPattern": "/payment/3ds/complete",
     "queryParameters": {
       "token": {
         "matches": ".*"

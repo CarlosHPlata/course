@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/payment/bank/complete",
+    "queryParameters": {
+      "token": {
+        "matches": ".*"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.user.id"
+      },
+      {
+        "matchesJsonPath": "$.user.email"
+      },
+      {
+        "matchesJsonPath": "$.amount"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "status": "ok",
+      "token": "{{request.query.token}}_TSC"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}
