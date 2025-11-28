@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/payment/3ds/authroize",
+    "queryParameters": {
+      "token": {
+        "matches": ".*"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "status": "ok",
+      "token": "{{request.query.token}}_TSC"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

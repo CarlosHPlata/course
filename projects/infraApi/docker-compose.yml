@@ -29,5 +29,14 @@ services:
       mysql:
         condition: service_healthy
 
+  wiremock:
+    image: "wiremock/wiremock:latest"
+    container_name: wiremock
+    ports:
+      - 3001:8080
+    volumes:
+      - ./docker/wiremock:/home/wiremock
+    entrypoint: ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose"]
+
 volumes:
   mysql_data:

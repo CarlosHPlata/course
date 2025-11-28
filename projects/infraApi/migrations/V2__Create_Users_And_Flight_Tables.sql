@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS USERS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Flight (
+    flightNumber VARCHAR(255) PRIMARY KEY,
+    baseprice DOUBLE NOT NULL,
+    departure VARCHAR(255) NOT NULL,
+    destination VARCHAR(255) NOT NULL,
+    departureDate DATE NOT NULL,
+    arrivalDate DATE NOT NULL
+);
