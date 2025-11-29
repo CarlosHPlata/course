@@ -1,4 +1,12 @@
 import { Router, Request, Response } from 'express';
+import { FlightPurchase } from '../../domain/usecases/FlightPurchase';
+import { FlightPurchaseAggregate } from '../../domain/aggregates/flightPurchaseAggregate';
+import { FlightRepository } from '../repositories/FlightRepository';
+import { UserRepository } from '../repositories/UserRepository';
+import { TariffGateway } from '../gateways/TariffGateway';
+import { PaymentFactory } from '../../domain/usecases/PaymentFactory';
+import { BankPaymentMethod } from '../gateways/paymentMethods/BankPaymentMethod';
+import { CreditPaymentMethod } from '../gateways/paymentMethods/CreditPaymentMethod';
 
 const router = Router();
 
@@ -75,9 +83,19 @@ const router = Router();
  */
 router.post('/v1/purchase', async (req: Request, res: Response) => {
   try {
-    const result = req.body;
+    const request: FlightPurchaseAggregate = req.body;
+    const flightPurchase = new FlightPurchase(
+      new UserRepository(),
+      new FlightRepository(),
+      new TariffGateway(),
+      new PaymentFactory(
+        new BankPaymentMethod(),
+        new CreditPaymentMethod()
+      )
+    );
+    const purchaseResult = await flightPurchase.purchase(request);
 
-    res.status(200).json(result);
+    res.status(200).json(purchaseResult);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
