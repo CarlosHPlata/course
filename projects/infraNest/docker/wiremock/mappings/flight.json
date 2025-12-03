@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/flight/service/v1/flight/([A-Za-z0-9-]+)"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "flightNumber": "AA123",
+      "departure": "New York",
+      "arrival": "Los Angeles",
+      "departureDate": "2022-01-01",
+      "arrivalDate": "2022-01-02",
+      "price": 100
+    }
+  }
+}

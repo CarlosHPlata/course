@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/payment/3ds/authorize",
+    "queryParameters": {
+      "token": {
+        "matches": ".*"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.userId"
+      },
+      {
+        "matchesJsonPath": "$.amount"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accepted": true
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

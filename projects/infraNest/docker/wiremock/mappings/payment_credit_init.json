@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/payment/initialize",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.amount"
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$.cardNumber",
+          "matches": "^1111\\d{12}$"
+        }
+      },
+      {
+        "matchesJsonPath": "$.cardExpiryDate"
+      },
+      {
+        "matchesJsonPath": "$.cardCvv"
+      },
+      {
+        "matchesJsonPath": "$.cardHolderName"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "status": "ok",
+      "paymentToken": "CRED_1234567890"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}
