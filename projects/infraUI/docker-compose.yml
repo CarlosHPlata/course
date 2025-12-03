@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  wiremock:
+    image: "wiremock/wiremock:latest"
+    container_name: wiremock
+    ports:
+      - 3001:8080
+    volumes:
+      - ./docker/wiremock:/home/wiremock
+    entrypoint: ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose", "--enable-stub-cors"]
