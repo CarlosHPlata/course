@@ -1,0 +1,10 @@
+{
+  "cleanCode": {
+    "src": "./src/1_CleanCode/before",
+    "type": "code"
+  },
+  "tdd": {
+    "src": "./src/3_TDD/functional",
+    "type": "dojo"
+  }
+}
