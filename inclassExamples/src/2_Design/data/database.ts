@@ -23,6 +23,7 @@ export const flights: Flight[] = [
   { origin: "JFK", destination: "ORD", price: 150 },
   { origin: "JFK", destination: "MIA", price: 200 },
   { origin: "JFK", destination: "SFO", price: 350 },
+  { origin: "JFK", destination: "MID", price: 950 },
   { origin: "LAX", destination: "SFO", price: 120 },
   { origin: "LAX", destination: "SEA", price: 180 },
   { origin: "ORD", destination: "LAX", price: 200 },

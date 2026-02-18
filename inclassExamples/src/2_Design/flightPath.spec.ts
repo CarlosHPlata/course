@@ -2,41 +2,38 @@ import { findFlightPath } from "./index";
 
 describe("Flight Pathfinding Unit Tests", () => {
 
-  test("should find the cheapest path from JFK to MID", () => {
-    const result = findFlightPath("JFK", "MID");
-    expect(result).not.toBeNull();
+  test("should find all paths from JFK to MID, cheapest first", () => {
+    const results = findFlightPath("JFK", "MID");
+    expect(results.length).toBeGreaterThan(0);
     // JFK -> MIA -> MEX -> MID = 200 + 150 + 120 = 470
-    expect(result?.path).toEqual(["JFK", "MIA", "MEX", "MID"]);
-    expect(result?.totalPrice).toBe(470);
+    expect(results[0].path).toEqual(["JFK", "MIA", "MEX", "MID"]);
+    expect(results[0].totalPrice).toBe(470);
   });
 
   test("should find the cheapest path from JFK to LAX", () => {
-    const result = findFlightPath("JFK", "LAX");
-    expect(result).not.toBeNull();
+    const results = findFlightPath("JFK", "LAX");
+    expect(results.length).toBeGreaterThan(0);
     // JFK -> ORD -> LAX = 150 + 200 = 350
-    expect(result?.path).toEqual(["JFK", "ORD", "LAX"]);
-    expect(result?.totalPrice).toBe(350);
+    expect(results[0].path).toEqual(["JFK", "ORD", "LAX"]);
+    expect(results[0].totalPrice).toBe(350);
   });
 
   test("should find the cheapest path from MIA to MID", () => {
-    const result = findFlightPath("MIA", "MID");
-    expect(result).not.toBeNull();
+    const results = findFlightPath("MIA", "MID");
+    expect(results.length).toBeGreaterThan(0);
     // MIA -> MEX -> MID = 150 + 120 = 270
-    expect(result?.path).toEqual(["MIA", "MEX", "MID"]);
-    expect(result?.totalPrice).toBe(270);
+    expect(results[0].path).toEqual(["MIA", "MEX", "MID"]);
+    expect(results[0].totalPrice).toBe(270);
   });
 
-  test("should return null when no path exists (JFK to LEX)", () => {
-    const result = findFlightPath("JFK", "LEX");
-    expect(result).toBeNull();
+  test("should return empty array when no path exists (JFK to LEX)", () => {
+    const results = findFlightPath("JFK", "LEX");
+    expect(results).toHaveLength(0);
   });
 
   test("should return destination immediately for direct flights (MIA to MID direct choice)", () => {
-    // Note: My current DFS returns the first path found. 
-    // In our DB, MIA to MEX to MID is $180+$120 = $300.
-    // MIA to MID direct is $350.
-    // Our DFS finds MIA -> MEX -> MID first because of the order in the array.
-    const result = findFlightPath("MIA", "MID");
-    expect(result?.totalPrice).toBeLessThanOrEqual(350);
+    const results = findFlightPath("MIA", "MID");
+    expect(results.length).toBeGreaterThan(0);
+    expect(results[0].totalPrice).toBeLessThanOrEqual(350);
   });
 });
