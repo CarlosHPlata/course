@@ -5,6 +5,8 @@ type Stack = {
   current: string;
   path: string[];
   totalPrice: number;
+  totalCo2: number;
+  totalDuration: number;
 }
 
 export function findPath(
@@ -15,7 +17,9 @@ export function findPath(
   const stack: Stack[] = [{
     current: origin,
     path: [origin],
-    totalPrice: 0
+    totalPrice: 0,
+    totalCo2: 0,
+    totalDuration: 0
   }];
 
   const minCosts: Map<string, number> = new Map();
@@ -24,10 +28,10 @@ export function findPath(
   const results: FlightPathResult[] = [];
 
   while (stack.length > 0) {
-    const { current, path, totalPrice } = stack.pop()!;
+    const { current, path, totalPrice, totalCo2, totalDuration } = stack.pop()!;
 
     if (current === destination) {
-      results.push({ path, totalPrice });
+      results.push({ path, totalPrice, totalCo2, totalDuration });
       continue;
     }
 
@@ -36,12 +40,16 @@ export function findPath(
     for (const flight of availableFlights) {
       const nextAirport = flight.destination;
       const nextPrice = totalPrice + flight.price;
+      const nextCo2 = totalCo2 + flight.co2;
+      const nextDuration = totalDuration + flight.duration;
 
       if (!path.includes(nextAirport) && path.length < maxHops) {
         stack.push({
           current: nextAirport,
           path: [...path, nextAirport],
-          totalPrice: nextPrice
+          totalPrice: nextPrice,
+          totalCo2: nextCo2,
+          totalDuration: nextDuration
         });
       }
     }
