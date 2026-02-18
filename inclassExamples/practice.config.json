@@ -3,8 +3,8 @@
     "src": "./src/1_CleanCode/before",
     "type": "code"
   },
-  "tdd": {
-    "src": "./src/3_TDD/functional",
-    "type": "dojo"
+  "design": {
+    "src": "./src/2_Design/flightPath.spec.ts",
+    "type": "test"
   }
 }
