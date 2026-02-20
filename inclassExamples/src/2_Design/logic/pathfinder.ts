@@ -12,6 +12,7 @@ type Stack = {
 export function findPath(
   origin: string,
   destination: string,
+  orderMethod: Ordenable,
   maxHops: number = 6
 ): FlightPathResult[] {
   const stack: Stack[] = [{
@@ -55,5 +56,34 @@ export function findPath(
     }
   }
 
-  return results.sort((a, b) => a.totalPrice - b.totalPrice);
+  return results.sort((a, b) => orderMethod.execute(a, b));
+}
+
+abstract class Ordenable {
+
+  private component: Ordenable;
+
+  constructor(component?: Ordenable) {
+    this.component = component;
+  }
+
+  protected abstract order(a: FlightPathResult, b: FlightPathResult): number;
+
+  execute(a: FlightPathResult, b: FlightPathResult): number {
+    if (this.component == null) return this.order(a, b)
+    const result = this.component.execute(a, b);
+    return result + this.order(a, b);
+  }
+}
+
+export class OrderByTotalCo2 extends Ordenable {
+  order(a: FlightPathResult, b: FlightPathResult): number {
+    return a.totalCo2 - b.totalCo2
+  }
+}
+
+export class OrderByTotalPrice extends Ordenable {
+  order(a: FlightPathResult, b: FlightPathResult): number {
+    return a.totalPrice - b.totalPrice
+  }
 }

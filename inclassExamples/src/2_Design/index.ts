@@ -1,5 +1,6 @@
-import { findPath } from "./logic/pathfinder";
+import { findPath, OrderByTotalCo2, OrderByTotalPrice } from "./logic/pathfinder";
 import { FlightPathResult } from "./types";
+
 
 /**
  * Formats duration in minutes to a more readable string (e.g., 2h 30m).
@@ -20,7 +21,9 @@ export function findFlightPath(origin: string, destination: string): FlightPathR
   console.log(`\n✈️  Searching for flight paths: ${origin} ➔ ${destination}`);
   console.log("━".repeat(60));
 
-  const results = findPath(origin, destination);
+  const results = findPath(origin, destination, new OrderByTotalPrice(new OrderByTotalCo2()));
+  // const results = findPath(origin, destination, new OrderByTotalPrice());
+  // const results = findPath(origin, destination, (new OrderByTotalCo2()));
 
   if (results.length > 0) {
     console.log(`✅ Found ${results.length} path(s):`);
