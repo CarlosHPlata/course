@@ -1,16 +1,23 @@
 import { PathFinder } from "../service/PathFinder"
+import { DummyRoutesStore } from "../store/DummyRouteStore"
 import { FlightLoggerSubscriber } from "../store/FlightLoggerSubscriber"
+import { RoutesStore } from "../store/RoutesStore"
 
 /**
  * Entry-point controller that orchestrates flight-path searches and ensures
  * flight activity is logged through `FlightLoggerSubscriber`.
+ * 
+ *     Modulos alto nivel      PathFinder    -->    IAirportClient
+ *                                  ^                   ^
+ *                                  |                   |
+ *     Bajo nivel              SearchController  ->   DummyRoutesStore
  */
 export class SearchController {
     private readonly pathFinder: PathFinder
     private readonly logger: FlightLoggerSubscriber
 
     constructor() {
-        this.pathFinder = new PathFinder()
+        this.pathFinder = new PathFinder(new RoutesStore())
         this.logger = new FlightLoggerSubscriber()
     }
 

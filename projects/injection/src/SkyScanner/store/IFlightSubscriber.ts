@@ -9,4 +9,7 @@ export interface IFlightsSubscriber {
      * @param flight - The flight that triggered the notification.
      */
     onFlightsUpdated: (flight: Flight) => void
+
+
+     //<------ no estaba antes
 }

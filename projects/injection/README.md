@@ -8,7 +8,8 @@ Given an origin and destination airport code, the system explores possible multi
 
 ```mermaid
 graph LR
-  SearchController --> PathFinder --> RoutesStore
+                        _________________________
+  SearchController --> | PathFinder --> interfaz | <-- RoutesStore
 ```
 
 | Layer | Responsibility |

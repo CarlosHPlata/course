@@ -2,20 +2,23 @@ import moment from 'moment'
 import { Airport } from '../model/Airport'
 import { Flight } from '../model/Flight'
 import { Path } from '../model/Path'
-import { RoutesStore } from '../store/RoutesStore'
+import { IAirportsClient } from '../interfaces/IAirportsClient'
 
 
 interface Options { maxStops: number }
 
 /**
+ * Pathfinder -> RoutesStore (antes)
+ * Pathfinder -> interfaz <- RoutesStore (despues)
  * Service that finds all valid flight paths between two airports
  * respecting layover constraints and stop limits using magic algorithm that go deep in recursion 
  */
 export class PathFinder {
-    private readonly routesStore: RoutesStore
+    // private static IAirportsClient routesStore
+    private readonly routesStore: IAirportsClient //<<---------
 
-    constructor() {
-        this.routesStore = new RoutesStore()
+    constructor(routesStore: IAirportsClient) {
+        this.routesStore = routesStore
     }
 
     /**
@@ -31,7 +34,7 @@ export class PathFinder {
         targetId: string,
         options: Options = { maxStops: 5 }
     ): Path[] {
-        const startAirport = this.routesStore.getAirportById(startId)
+        const startAirport = this.routesStore.getAirportById(startId) //<----------
         if (!startAirport) return []
 
         const paths: Flight[][] = []

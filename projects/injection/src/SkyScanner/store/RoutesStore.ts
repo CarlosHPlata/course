@@ -1,3 +1,4 @@
+import { IAirportsClient } from '../interfaces/IAirportsClient'
 import { Airport } from '../model/Airport'
 import { Flight } from '../model/Flight'
 import { FlightStore } from './FlightStore'
@@ -7,7 +8,7 @@ import { IFlightsSubscriber } from './IFlightSubscriber'
  * In-memory route using <data structure that uses nodes and relationships> that keeps airport and flight data in sync with
  * `FlightStore` by subscribing to its update notifications.
  */
-export class RoutesStore implements IFlightsSubscriber {
+export class RoutesStore implements IFlightsSubscriber, IAirportsClient {
     private readonly airports: Map<string, Airport>
 
     constructor() {
