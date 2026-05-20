@@ -10,7 +10,7 @@ along with the final total price.
 ## Flow Description
 
 **input:**
-- `Array<{ orderOfFlight, flightNumber, seatClass(BASIC|BUSINESS|FIRST) }>`
+- `Array<Object({ orderOfFlight, flightNumber, seatClass(BASIC|BUSINESS|FIRST) }>`
 - `userId`
 - `paymentToken(BANK_<UUID>)`
 
@@ -20,11 +20,14 @@ along with the final total price.
 
 The user submits a purchase request containing the flights to buy, the chosen seat class for each flight, the user ID, and a payment token.
 
+// connect to DB to get USER email by userID
 1. The system retrieves the user information using `userId` which will contain the `email`.
 
+// connect to flight system to get baseprice
 2. For every `flightNumber` provided, the system retrieves the flight data, which among other information it includes the `basePrice` and the seat availability.
 
-3. The system requests the current tariff for each flight’s selected seat class
+// connect to tariff system to get tariff info
+3. The system requests the current tariff 
 from the pricing source, returning `{basic: number, business: number, first: number}`.
 
 4. Each flight will calculate its final price using:
@@ -32,10 +35,11 @@ from the pricing source, returning `{basic: number, business: number, first: num
 
 5. The system sums all final prices to obtain `totalPrice`.
 
+// connect to something to process payment
 6. The system determines the payment provider method based on the payment token
 prefix.
 (*For now, only `BANK_` tokens are supported for direct payment*)
-The system sends the payment request (`userId`, `email`, `token`, `paymentToken`) to the corresponding payment provider.
+The system sends the payment request (`userId`, `email`, `paymentToken`, `finalPrice`) to the corresponding payment provider.
 
 7. The payment provider responds with a signed token.
    - A valid signed token ends with `_TSP`

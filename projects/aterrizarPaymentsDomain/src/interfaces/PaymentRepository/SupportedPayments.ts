@@ -1,0 +1,1 @@
+export type SupportedPayments = 'BANK' | 'CRED'
